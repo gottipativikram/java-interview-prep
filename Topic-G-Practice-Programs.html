@@ -253,7 +253,7 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <button class="btn icon menu" id="menuBtn" type="button" aria-label="Toggle navigation">☰</button>
-  <div class="brand"><span class="logo">J</span><div><b>Practice Programs · Interview Prep</b><small>49 questions · 0 diagrams </small></div></div>
+  <div class="brand"><span class="logo">J</span><div><b>Practice Programs · Interview Prep</b><small>49 questions · 0 diagrams  · 1 video</small></div></div>
   <div class="search"><input id="q" type="search" placeholder="Search questions…  ( / )" autocomplete="off" aria-label="Search questions"><span id="hits"></span></div>
   <button class="btn icon" id="themeBtn" type="button" aria-label="Toggle dark mode">◐</button>
 </header>
@@ -263,7 +263,7 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
     <div class="nav-label">Sections</div>
     <a class="nav-sec" href="#sec-G" data-sec="G"><span class="sec-letter sm">G</span><span class="nav-t">Practice Programs</span><span class="nav-n" data-count="G">0/49</span><span class="nav-bar"><i data-bar="G"></i></span></a>
     <div class="nav-label">More</div>
-    <a class="nav-sec" href="Interview-Prep.html"><span class="sec-letter sm alt">↗</span><span class="nav-t">All topics</span></a>
+    <a class="nav-sec" href="#videos"><span class="sec-letter sm alt">▶</span><span class="nav-t">Topic video</span></a><a class="nav-sec" href="Interview-Prep.html"><span class="sec-letter sm alt">↗</span><span class="nav-t">All topics</span></a>
     <a class="nav-sec" href="#companies"><span class="sec-letter sm alt">#</span><span class="nav-t">Company index</span></a>
     <a class="nav-sec" href="#tips"><span class="sec-letter sm alt">!</span><span class="nav-t">Before the interview</span></a>
   </nav>
@@ -278,14 +278,16 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
     <section class="hero">
       <h1>Java Practice Programs</h1>
       <p>49 questions in this topic, each with a <b>concise</b> answer to say out loud and an <b>in-depth</b> answer with internals and follow-ups. Click a question to open it.</p>
-      <div class="vgrid" id="videos"></div>
+      <div class="vgrid" id="videos"><div class="vcard" data-video="07-Practice-Programs.mp4">
+  <div class="vthumb"><span class="sec-letter">G</span><span class="vplay">▶</span><span class="vdur">7:39</span></div>
+  <div class="vmeta"><b>Java Practice Programs</b><span>Beginner · Intermediate · Advanced</span></div></div></div>
     </section>
     <div id="empty" class="empty" hidden>No questions match. Try another search or clear the filters.</div>
     
 <section class="sec" id="sec-G" data-sec="G">
   <header class="sec-h">
     <div><span class="sec-letter">G</span><h2>Java Practice Programs</h2></div>
-    
+    <button class="btn ghost play-sec" data-video="07-Practice-Programs.mp4" type="button">▶ Watch video · 7:39</button>
   </header>
   <article class="q" id="q-G1" data-id="G1" data-co="" data-search="g1 declare and initialize variables of different data types (int, double, char, boolean). declare each primitive with a literal of the matching type and print it. ">
     <div class="q-h" role="button" tabindex="0" aria-expanded="false">
@@ -7462,7 +7464,7 @@ Extra vs simple  : 197.12
   <video id="plVideo" controls preload="metadata"></video>
   <p class="muted small" id="plNote">Videos play from the <code>videos/</code> folder next to this file.</p></dialog>
 <button class="btn totop" id="toTop" type="button" aria-label="Back to top">↑</button>
-<script>const VIDEO_SRC={};const VIDEO_TITLES={"01-Core-Java.mp4":"Core Java Interview Essentials","02-Java8-Streams-Coding.mp4":"Java 8 Streams & Coding Problems","03-Spring-Boot-JPA-Testing.mp4":"Spring Boot, JPA & Testing","04-Security-Microservices.mp4":"Security & Microservices","05-SQL-Angular-Interview-Delivery.mp4":"SQL, Angular & Interview Delivery"};
+<script>const VIDEO_SRC={};const VIDEO_TITLES={"01-Core-Java.mp4":"Core Java Interview Essentials","02-Java8-Streams-Coding.mp4":"Java 8 Streams & Coding Problems","03-Spring-Boot-JPA-Testing.mp4":"Spring Boot, JPA & Testing","04-Security-Microservices.mp4":"Security & Microservices","05-SQL-Angular-Interview-Delivery.mp4":"SQL, Angular & Interview Delivery","06-Production-Scenarios.mp4":"Production & Troubleshooting Scenarios","07-Practice-Programs.mp4":"Java Practice Programs"};
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];

@@ -253,7 +253,7 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <button class="btn icon menu" id="menuBtn" type="button" aria-label="Toggle navigation">☰</button>
-  <div class="brand"><span class="logo">J</span><div><b>Production Scenarios · Interview Prep</b><small>70 questions · 0 diagrams </small></div></div>
+  <div class="brand"><span class="logo">J</span><div><b>Production Scenarios · Interview Prep</b><small>70 questions · 0 diagrams  · 1 video</small></div></div>
   <div class="search"><input id="q" type="search" placeholder="Search questions…  ( / )" autocomplete="off" aria-label="Search questions"><span id="hits"></span></div>
   <button class="btn icon" id="themeBtn" type="button" aria-label="Toggle dark mode">◐</button>
 </header>
@@ -263,7 +263,7 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
     <div class="nav-label">Sections</div>
     <a class="nav-sec" href="#sec-F" data-sec="F"><span class="sec-letter sm">F</span><span class="nav-t">Production Scenarios</span><span class="nav-n" data-count="F">0/70</span><span class="nav-bar"><i data-bar="F"></i></span></a>
     <div class="nav-label">More</div>
-    <a class="nav-sec" href="Interview-Prep.html"><span class="sec-letter sm alt">↗</span><span class="nav-t">All topics</span></a>
+    <a class="nav-sec" href="#videos"><span class="sec-letter sm alt">▶</span><span class="nav-t">Topic video</span></a><a class="nav-sec" href="Interview-Prep.html"><span class="sec-letter sm alt">↗</span><span class="nav-t">All topics</span></a>
     <a class="nav-sec" href="#companies"><span class="sec-letter sm alt">#</span><span class="nav-t">Company index</span></a>
     <a class="nav-sec" href="#tips"><span class="sec-letter sm alt">!</span><span class="nav-t">Before the interview</span></a>
   </nav>
@@ -278,14 +278,16 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
     <section class="hero">
       <h1>Production &amp; Troubleshooting Scenarios</h1>
       <p>70 questions in this topic, each with a <b>concise</b> answer to say out loud and an <b>in-depth</b> answer with internals and follow-ups. Click a question to open it.</p>
-      <div class="vgrid" id="videos"></div>
+      <div class="vgrid" id="videos"><div class="vcard" data-video="06-Production-Scenarios.mp4">
+  <div class="vthumb"><span class="sec-letter">F</span><span class="vplay">▶</span><span class="vdur">7:49</span></div>
+  <div class="vmeta"><b>Production &amp; Troubleshooting Scenarios</b><span>Debug · Mitigate · Fix · Prevent</span></div></div></div>
     </section>
     <div id="empty" class="empty" hidden>No questions match. Try another search or clear the filters.</div>
     
 <section class="sec" id="sec-F" data-sec="F">
   <header class="sec-h">
     <div><span class="sec-letter">F</span><h2>Production &amp; Troubleshooting Scenarios</h2></div>
-    
+    <button class="btn ghost play-sec" data-video="06-Production-Scenarios.mp4" type="button">▶ Watch video · 7:49</button>
   </header>
   <article class="q" id="q-F1" data-id="F1" data-co="" data-search="f1 your application suddenly throws outofmemoryerror in production. how will you identify the root cause and fix it? 1. read the exact message: java heap space , metaspace , gc overhead limit exceeded and unable to create native thread each have a different cause. 2. make sure the jvm writes a dump when it fails: xx:+heapdumponoutofmemoryerror xx:heapdumppath=/dumps . if the pod is still alive, take one yourself with jcmd &lt;pid gc.heap dump /dumps/heap.hprof . 3. open the dump in eclipse mat. use the leak suspects report and the dominator tree to find what retains the most memory, for example a static map cache, an unbounded list , or threadlocal s that are never cleared. 4. compare the trend of actuator jvm.memory.used in grafana with the deployment timeline. 5. fix the code, for example with a bounded caffeine cache, streaming or pagination instead of findall() , or closing resources. only then size the heap correctly ( xx:maxrampercentage=75 in kubernetes). 6. add an alert on heap usage above 85% after gc. ">
     <div class="q-h" role="button" tabindex="0" aria-expanded="false">
@@ -7437,7 +7439,7 @@ journalctl -k -b -1 | grep -iE <span class="hljs-string">&quot;oom|killed proces
   <video id="plVideo" controls preload="metadata"></video>
   <p class="muted small" id="plNote">Videos play from the <code>videos/</code> folder next to this file.</p></dialog>
 <button class="btn totop" id="toTop" type="button" aria-label="Back to top">↑</button>
-<script>const VIDEO_SRC={};const VIDEO_TITLES={"01-Core-Java.mp4":"Core Java Interview Essentials","02-Java8-Streams-Coding.mp4":"Java 8 Streams & Coding Problems","03-Spring-Boot-JPA-Testing.mp4":"Spring Boot, JPA & Testing","04-Security-Microservices.mp4":"Security & Microservices","05-SQL-Angular-Interview-Delivery.mp4":"SQL, Angular & Interview Delivery"};
+<script>const VIDEO_SRC={};const VIDEO_TITLES={"01-Core-Java.mp4":"Core Java Interview Essentials","02-Java8-Streams-Coding.mp4":"Java 8 Streams & Coding Problems","03-Spring-Boot-JPA-Testing.mp4":"Spring Boot, JPA & Testing","04-Security-Microservices.mp4":"Security & Microservices","05-SQL-Angular-Interview-Delivery.mp4":"SQL, Angular & Interview Delivery","06-Production-Scenarios.mp4":"Production & Troubleshooting Scenarios","07-Practice-Programs.mp4":"Java Practice Programs"};
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
