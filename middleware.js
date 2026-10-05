@@ -1,6 +1,6 @@
 // Vercel Routing Middleware: every page except the login page and the login API needs a valid session cookie.
 export const config = {
-  matcher: ['/((?!login\\.html|api/|favicon\\.ico).*)'],
+  matcher: ['/((?!login\\.html|api/|favicon\\.ico|manifest\\.webmanifest|sw\\.js|icons/).*)'],
 };
 
 export default function middleware(request) {

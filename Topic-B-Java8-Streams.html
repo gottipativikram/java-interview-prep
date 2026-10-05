@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><script>(function(){if(location.hostname.endsWith('.vercel.app'))return;var ok=false;try{ok=sessionStorage.getItem('jip-auth')==='57741d8518bf827c6d5ef6c047439c5609f74b2389375b44a084c0b3907b579e'}catch(e){}if(!ok){document.documentElement.style.visibility='hidden';location.replace('login.html?next='+encodeURIComponent(location.pathname.split('/').pop()||'index.html'));}})();</script><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<html lang="en"><head><meta charset="utf-8"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1f4e79"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Java Prep"><script>(function(){if(location.hostname.endsWith('.vercel.app'))return;var ok=false;try{ok=sessionStorage.getItem('jip-auth')==='57741d8518bf827c6d5ef6c047439c5609f74b2389375b44a084c0b3907b579e'}catch(e){}if(!ok){document.documentElement.style.visibility='hidden';location.replace('login.html?next='+encodeURIComponent(location.pathname.split('/').pop()||'index.html'));}})();</script><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Java 8 & Coding Interview Prep</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e07b1f'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'%3EJ%3C/text%3E%3C/svg%3E">
 <style>:root{
@@ -4948,4 +4948,23 @@ We build the answer left to right and want small characters as early as possible
   top.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
 })();
 </script>
-<script>document.addEventListener('DOMContentLoaded',function(){var t=document.querySelector('.top');if(!t)return;var b=document.createElement('button');b.type='button';b.className='btn';b.textContent='Log out';b.style.flex='none';b.onclick=function(){try{sessionStorage.removeItem('jip-auth')}catch(e){}location.href=location.hostname.endsWith('.vercel.app')?'/api/logout':'login.html';};t.appendChild(b);});</script></body></html>
+<script>
+(function(){
+  var V = location.hostname.endsWith('.vercel.app');
+  if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(function(){});
+  function logout(){
+    try { sessionStorage.removeItem('jip-auth'); } catch(e) {}
+    var done = function(){ location.href = V ? '/api/logout' : 'login.html'; };
+    if (window.caches) caches.keys().then(function(k){ return Promise.all(k.map(function(n){ return caches.delete(n); })); }).then(done, done); else done();
+  }
+  var deferred = null;
+  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred = e; var b = document.getElementById('installBtn'); if (b) b.hidden = false; });
+  document.addEventListener('DOMContentLoaded', function(){
+    var t = document.querySelector('.top'); if (!t) return;
+    var inst = document.createElement('button'); inst.type = 'button'; inst.id = 'installBtn'; inst.className = 'btn'; inst.textContent = 'Install app'; inst.style.flex = 'none'; inst.hidden = !deferred;
+    inst.onclick = function(){ if (!deferred) return; deferred.prompt(); deferred.userChoice.finally(function(){ deferred = null; inst.hidden = true; }); };
+    var out = document.createElement('button'); out.type = 'button'; out.className = 'btn'; out.textContent = 'Log out'; out.style.flex = 'none'; out.onclick = logout;
+    t.appendChild(inst); t.appendChild(out);
+  });
+})();
+</script></body></html>
