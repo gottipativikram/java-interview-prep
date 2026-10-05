@@ -55,7 +55,7 @@
 (() => {
   // On Vercel the server checks the login (api/login.js); elsewhere (GitHub Pages) it is checked in the browser.
   const SERVER = location.hostname.endsWith('.vercel.app');
-  const HASH = '57741d8518bf827c6d5ef6c047439c5609f74b2389375b44a084c0b3907b579e';
+  const HASH = '884a939db9c616d1a60737c9a287d150d1a5b42a45fa6d614afd6280ff09cf9e';
   const next = (() => {
     const n = new URLSearchParams(location.search).get('next') || '';
     return /^\/?[\w\-./]*$/.test(n) && !n.includes('..') && !n.startsWith('//') ? n : '';
