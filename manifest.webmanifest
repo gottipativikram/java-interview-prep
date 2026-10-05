@@ -1,7 +1,7 @@
 {
   "name": "Java Interview Prep",
   "short_name": "Java Prep",
-  "description": "245 Java full-stack interview questions with concise and in-depth answers, diagrams and topic videos.",
+  "description": "294 Java full-stack interview questions and practice programs with concise and in-depth answers, diagrams and topic videos.",
   "id": "./",
   "start_url": "./",
   "scope": "./",
@@ -19,6 +19,7 @@
     { "name": "Core Java", "url": "./Topic-A-Core-Java.html" },
     { "name": "Java 8 & Streams", "url": "./Topic-B-Java8-Streams.html" },
     { "name": "Spring Boot", "url": "./Topic-C-Spring-Boot.html" },
-    { "name": "Production Scenarios", "url": "./Topic-F-Production-Scenarios.html" }
+    { "name": "Production Scenarios", "url": "./Topic-F-Production-Scenarios.html" },
+    { "name": "Practice Programs", "url": "./Topic-G-Practice-Programs.html" }
   ]
 }
