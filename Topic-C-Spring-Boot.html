@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<html lang="en"><head><meta charset="utf-8"><script>(function(){if(location.hostname.endsWith('.vercel.app'))return;var ok=false;try{ok=sessionStorage.getItem('jip-auth')==='57741d8518bf827c6d5ef6c047439c5609f74b2389375b44a084c0b3907b579e'}catch(e){}if(!ok){document.documentElement.style.visibility='hidden';location.replace('login.html?next='+encodeURIComponent(location.pathname.split('/').pop()||'index.html'));}})();</script><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Spring Boot Interview Prep</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e07b1f'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'%3EJ%3C/text%3E%3C/svg%3E">
 <style>:root{
@@ -197,7 +197,7 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <button class="btn icon menu" id="menuBtn" type="button" aria-label="Toggle navigation">☰</button>
-  <div class="brand"><span class="logo">J</span><div><b>Spring Boot · Interview Prep</b><small>35 questions · 4 diagrams · 1 video</small></div></div>
+  <div class="brand"><span class="logo">J</span><div><b>Spring Boot · Interview Prep</b><small>35 questions · 4 diagrams  · 1 video</small></div></div>
   <div class="search"><input id="q" type="search" placeholder="Search questions…  ( / )" autocomplete="off" aria-label="Search questions"><span id="hits"></span></div>
   <button class="btn icon" id="themeBtn" type="button" aria-label="Toggle dark mode">◐</button>
 </header>
@@ -214,7 +214,7 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
   <main id="main">
     <div class="toolbar">
       <div class="seg" id="globalMode"><button type="button" class="on" data-m="c">Concise</button><button type="button" data-m="d">In-depth</button></div>
-      <div class="chips" id="coChips"><button type="button" class="chip on" data-co="">All companies</button><button type="button" class="chip" data-co="TCS">TCS</button><button type="button" class="chip" data-co="Company 2">Company 2</button><button type="button" class="chip" data-co="Hexaware">Hexaware</button><button type="button" class="chip" data-co="G2Healthcare">G2Healthcare</button></div>
+      <div class="chips" id="coChips"><button type="button" class="chip on" data-co="">All companies</button><button type="button" class="chip" data-co="TCS">TCS</button><button type="button" class="chip" data-co="Company 2">Company 2</button><button type="button" class="chip" data-co="Hexaware">Hexaware</button><button type="button" class="chip" data-co="G2Healthcare">G2Healthcare</button><button type="button" class="chip" data-co="Other rounds (Question List)">Other rounds (Question List)</button></div>
       <select id="statusSel" aria-label="Filter by status"><option value="all">All questions</option><option value="todo">Not revised</option><option value="done">Revised</option></select>
       <button class="btn ghost" id="expandAll" type="button">Expand all</button>
       <button class="btn ghost" id="collapseAll" type="button">Collapse all</button>
@@ -543,11 +543,11 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
 </div>
     </div>
   </article>
-<article class="q" id="q-C4" data-id="C4" data-co="TCS" data-search="c4 what is a bean? how is a bean created internally? a bean is an object whose creation, wiring and lifecycle the spring ioc container ( applicationcontext ) manages. internally: 1. scan/parse. config classes and @component classes are read into beandefinition s (class, scope, dependencies, init/destroy methods). 2. beanfactorypostprocessor s modify the definitions. for example, propertysourcesplaceholderconfigurer resolves ${...} placeholders. 3. instantiate. the constructor runs via reflection (constructor injection resolves its dependencies at this point). 4. populate. field and setter injection happens. 5. aware callbacks, then beanpostprocessor before init, then init, then after init. the after init step is where aop/transaction proxies are created. 6. the bean is stored in the singleton cache and handed out on request. tcs">
+<article class="q" id="q-C4" data-id="C4" data-co="TCS|Other rounds (Question List)" data-search="c4 what is a bean? how is a bean created internally? a bean is an object whose creation, wiring and lifecycle the spring ioc container ( applicationcontext ) manages. internally: 1. scan/parse. config classes and @component classes are read into beandefinition s (class, scope, dependencies, init/destroy methods). 2. beanfactorypostprocessor s modify the definitions. for example, propertysourcesplaceholderconfigurer resolves ${...} placeholders. 3. instantiate. the constructor runs via reflection (constructor injection resolves its dependencies at this point). 4. populate. field and setter injection happens. 5. aware callbacks, then beanpostprocessor before init, then init, then after init. the after init step is where aop/transaction proxies are created. 6. the bean is stored in the singleton cache and handed out on request. tcs other rounds (question list)">
     <div class="q-h" role="button" tabindex="0" aria-expanded="false">
       <span class="qid">C4</span>
       <span class="qt">What is a Bean? How is a Bean created internally?</span>
-      <span class="badges"><span class="badge">TCS</span></span>
+      <span class="badges"><span class="badge">TCS</span><span class="badge">Other rounds (Question List)</span></span>
       <span class="done-dot" title="Revised"></span>
       <span class="chev" aria-hidden="true"></span>
     </div>
@@ -636,11 +636,11 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
 </div>
     </div>
   </article>
-<article class="q" id="q-C5" data-id="C5" data-co="" data-search="c5 bean life cycle. instantiate → inject dependencies → beannameaware / beanfactoryaware / applicationcontextaware → beanpostprocessor.postprocessbeforeinitialization → @postconstruct → initializingbean.afterpropertiesset() → custom initmethod → postprocessafterinitialization (proxies created here) → bean ready → on context close: @predestroy → disposablebean.destroy() → destroymethod . note: spring does not call destroy callbacks for prototype beans. ">
+<article class="q" id="q-C5" data-id="C5" data-co="Other rounds (Question List)" data-search="c5 bean life cycle. instantiate → inject dependencies → beannameaware / beanfactoryaware / applicationcontextaware → beanpostprocessor.postprocessbeforeinitialization → @postconstruct → initializingbean.afterpropertiesset() → custom initmethod → postprocessafterinitialization (proxies created here) → bean ready → on context close: @predestroy → disposablebean.destroy() → destroymethod . note: spring does not call destroy callbacks for prototype beans. other rounds (question list)">
     <div class="q-h" role="button" tabindex="0" aria-expanded="false">
       <span class="qid">C5</span>
       <span class="qt">Bean life cycle.</span>
-      <span class="badges"></span>
+      <span class="badges"><span class="badge">Other rounds (Question List)</span></span>
       <span class="done-dot" title="Revised"></span>
       <span class="chev" aria-hidden="true"></span>
     </div>
@@ -5235,6 +5235,9 @@ verify(smsGateway, times(<span class="hljs-number">2</span>)).send(any(), any())
   </tbody></table></div></details><details class="co"><summary><b>G2Healthcare</b><span>5 questions</span></summary>
   <div class="tbl"><table><thead><tr><th>#</th><th>Question</th><th>Answer</th></tr></thead><tbody>
   <tr><td>8</td><td>Spring Boot scopes</td><td><a href="#q-C6" class="qlink">C6</a></td></tr><tr><td>9–11</td><td>@ConfigurationProperties (custom)</td><td><a href="#q-C21" class="qlink">C21</a></td></tr><tr><td>12</td><td>Types of DI</td><td><a href="#q-C9" class="qlink">C9</a></td></tr><tr><td>13</td><td>Request parameters</td><td><a href="#q-C13" class="qlink">C13</a></td></tr><tr><td>14</td><td>Exception handling</td><td><a href="#q-C20" class="qlink">C20</a></td></tr>
+  </tbody></table></div></details><details class="co"><summary><b>Other rounds (Question List)</b><span>2 questions</span></summary>
+  <div class="tbl"><table><thead><tr><th>#</th><th>Question</th><th>Answer</th></tr></thead><tbody>
+  <tr><td>7</td><td>Bean life cycle</td><td><a href="#q-C5" class="qlink">C5</a></td></tr><tr><td>12</td><td>Bean creation internals; HashMap internals</td><td><a href="#q-C4" class="qlink">C4</a>, <a href="Topic-A-Core-Java.html#q-A25" class="qlink">A25</a></td></tr>
   </tbody></table></div></details></section>
     <section class="sec" id="tips"><header class="sec-h"><div><span class="sec-letter alt">!</span><h2>Before the interview</h2></div></header>
       <ul class="tips">
@@ -5243,7 +5246,7 @@ verify(smsGateway, times(<span class="hljs-number">2</span>)).send(any(), any())
         <li><b>Code it yourself:</b> the Stream programs in section B were compiled and run. Retype a few from memory.</li>
         <li><b>Missing question:</b> G2Healthcare Q26 was cut off in the source list. <a href="Topic-E-SQL-Angular-HR.html#q-E25" class="qlink">E25</a> covers the likely versions.</li>
       </ul></section>
-    <footer class="foot">Progress is saved in this browser only. <a href="Interview-Prep.html">All topics</a> · <a href="Topic-A-Core-Java.html">Core Java</a> · <a href="Topic-B-Java8-Streams.html">Java 8 &amp; Coding</a> · <a href="Topic-D-Security-Microservices.html">Security &amp; Microservices</a> · <a href="Topic-E-SQL-Angular-HR.html">SQL, Angular &amp; HR</a></footer>
+    <footer class="foot">Progress is saved in this browser only. <a href="Interview-Prep.html">All topics</a> · <a href="Topic-A-Core-Java.html">Core Java</a> · <a href="Topic-B-Java8-Streams.html">Java 8 &amp; Coding</a> · <a href="Topic-D-Security-Microservices.html">Security &amp; Microservices</a> · <a href="Topic-E-SQL-Angular-HR.html">SQL, Angular &amp; HR</a> · <a href="Topic-F-Production-Scenarios.html">Production Scenarios</a></footer>
   </main>
 </div>
 <dialog id="player"><div class="pl-h"><b id="plTitle"></b><button class="btn icon" id="plClose" type="button" aria-label="Close video">✕</button></div>
@@ -5418,4 +5421,4 @@ verify(smsGateway, times(<span class="hljs-number">2</span>)).send(any(), any())
   top.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
 })();
 </script>
-</body></html>
+<script>document.addEventListener('DOMContentLoaded',function(){var t=document.querySelector('.top');if(!t)return;var b=document.createElement('button');b.type='button';b.className='btn';b.textContent='Log out';b.style.flex='none';b.onclick=function(){try{sessionStorage.removeItem('jip-auth')}catch(e){}location.href=location.hostname.endsWith('.vercel.app')?'/api/logout':'login.html';};t.appendChild(b);});</script></body></html>
