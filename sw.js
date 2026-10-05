@@ -1,6 +1,6 @@
 // Offline support: pages are fetched from the network first and cached; when offline the cached copy is shown.
 // Videos and PDFs are never cached (too large). Redirects (e.g. to the login page) are never cached.
-const CACHE = 'jip-v3';
+const CACHE = 'jip-v4';
 const SHELL = ['login.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', e => {

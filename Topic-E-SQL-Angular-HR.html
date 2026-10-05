@@ -193,6 +193,62 @@ dialog#player::backdrop{background:rgba(5,12,20,.72)}
 }
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* Algorithm animation player (uses the page's theme tokens) */
+:root { --viz-bad: #c62828; --viz-bad-soft: #fbe3e3; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --viz-bad: #ff8a80; --viz-bad-soft: #3a1c1c; } }
+:root[data-theme="dark"] { --viz-bad: #ff8a80; --viz-bad-soft: #3a1c1c; }
+.viz-open { font-size: 13px; padding: 5px 12px; border-color: var(--accent); color: var(--accent); }
+.viz { margin: 10px 0 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); padding: 12px 14px; min-width: 0; }
+.viz-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.viz-head b { font-size: 14px; margin-right: auto; }
+.viz-inlabel { font-size: 12px; color: var(--muted); }
+.viz-in { font: 13px var(--f-mono, monospace); height: 32px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 0 8px; width: min(260px, 100%); }
+.viz-head .btn, .viz-ctrl .btn { padding: 4px 11px; font-size: 13px; }
+.viz-stage { min-height: 190px; display: flex; align-items: flex-end; justify-content: center; overflow-x: auto; padding: 6px 0; }
+.viz-bars { display: flex; gap: 6px; align-items: flex-end; height: 180px; }
+.viz-bars.chars { height: auto; align-items: flex-start; }
+.viz-col { display: flex; flex-direction: column; align-items: center; width: 40px; height: 100%; justify-content: flex-end; }
+.viz-bars.chars .viz-col { height: auto; }
+.viz-bar { width: 100%; background: var(--brand-soft); color: var(--brand); border: 2px solid var(--brand); border-radius: 7px 7px 3px 3px; display: flex; align-items: flex-start; justify-content: center; font: 700 13px var(--f-mono, monospace); padding-top: 4px; transition: height .25s, background .2s; }
+.viz-bars.chars .viz-bar { height: 40px; align-items: center; padding: 0; font-size: 18px; border-radius: 7px; }
+.viz-bar.ok { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+.viz-bar.cmp { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.viz-bar.swap, .viz-bar.bad { background: var(--viz-bad-soft); border-color: var(--viz-bad); color: var(--viz-bad); }
+.viz-bar.hi { box-shadow: 0 0 0 3px var(--accent); }
+.viz-bar.dim { opacity: .35; }
+.viz-idx { font: 11px var(--f-mono, monospace); color: var(--muted); margin-top: 3px; }
+.viz-ptr { font: 700 11px var(--f-mono, monospace); color: var(--accent); min-height: 15px; text-align: center; }
+.viz-grid { display: grid; gap: 5px; width: min(360px, 100%); align-self: center; }
+.viz-cell { aspect-ratio: 1; max-width: 100%; display: grid; place-items: center; border: 2px solid var(--line); border-radius: 8px; background: var(--surface); font: 700 15px var(--f-mono, monospace); transition: background .2s; }
+.viz-cell.ok { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+.viz-cell.cmp { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.viz-cell.swap { background: var(--viz-bad-soft); border-color: var(--viz-bad); color: var(--viz-bad); }
+.viz-stackwrap { display: flex; gap: 40px; align-items: flex-end; flex-wrap: wrap; justify-content: center; }
+.viz-str { display: flex; gap: 6px; font: 700 26px var(--f-mono, monospace); align-self: center; }
+.viz-str span { width: 38px; height: 46px; display: grid; place-items: center; border-radius: 8px; border: 2px solid var(--line); background: var(--surface); }
+.viz-str span.cmp { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.viz-str span.bad { border-color: var(--viz-bad); background: var(--viz-bad-soft); color: var(--viz-bad); }
+.viz-str span.done { opacity: .45; }
+.viz-stackcol { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.viz-stack { display: flex; flex-direction: column-reverse; gap: 4px; width: 70px; min-height: 150px; border: 2px solid var(--brand); border-top: 0; border-radius: 0 0 10px 10px; padding: 6px; justify-content: flex-start; }
+.viz-sitem { height: 30px; display: grid; place-items: center; border-radius: 6px; background: var(--brand-soft); color: var(--brand); font: 700 18px var(--f-mono, monospace); }
+.viz-sitem.top { background: var(--accent-soft); color: var(--accent); }
+.viz-empty { color: var(--muted); font-size: 12px; text-align: center; }
+.viz-stacklabel { font-size: 11px; color: var(--muted); }
+.viz-nums { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; align-self: center; }
+.viz-big { font: 800 40px var(--f-display, sans-serif); padding: 4px 18px; border-radius: 12px; border: 3px solid var(--brand); color: var(--brand); margin-right: 8px; }
+.viz-big.ok { border-color: var(--ok); color: var(--ok); }
+.viz-big.bad { border-color: var(--viz-bad); color: var(--viz-bad); }
+.viz-chip { font: 700 14px var(--f-mono, monospace); padding: 6px 10px; border-radius: 8px; background: var(--surface); border: 2px solid var(--line); }
+.viz-chip.cmp { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.viz-chip.ok { border-color: var(--ok); }
+.viz-chip.bad { border-color: var(--viz-bad); background: var(--viz-bad-soft); color: var(--viz-bad); }
+.viz-msg { min-height: 42px; margin: 8px 0; padding: 8px 12px; border-radius: 8px; background: var(--surface); border-left: 3px solid var(--accent); font-size: 14px; }
+.viz-ctrl { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.viz-speedl { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); margin-left: 8px; }
+.viz-count { margin-left: auto; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .viz-bar, .viz-cell { transition: none; } }
 </style></head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
@@ -4587,6 +4643,267 @@ List&lt;Map.Entry&lt;String, Long&gt;&gt; ranked = freq.entrySet().stream()
   const top = $('#toTop');
   addEventListener('scroll', () => top.classList.toggle('show', scrollY > 900), { passive: true });
   top.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
+})();
+
+// Step-by-step algorithm animations for program questions.
+// Each algorithm turns an input into a list of frames; the player renders one frame at a time.
+(() => {
+  const nums = s => s.split(/[\s,]+/).filter(Boolean).map(Number).filter(n => !Number.isNaN(n));
+  const F = (state, msg, extra = {}) => ({ ...extra, state: JSON.parse(JSON.stringify(state)), msg });
+
+  const ALGOS = {
+    selection: { title: 'Selection sort', kind: 'array', input: '29, 10, 14, 37, 13, 5', run(a) {
+      const fr = [F(a, 'Start: find the smallest element in the unsorted part and swap it to the front.', { sorted: [] })];
+      const sorted = [];
+      for (let i = 0; i < a.length - 1; i++) {
+        let min = i;
+        for (let j = i + 1; j < a.length; j++) {
+          fr.push(F(a, `Compare a[${j}] = ${a[j]} with current minimum a[${min}] = ${a[min]}`, { cmp: [j, min], sorted: [...sorted], ptr: { i, min } }));
+          if (a[j] < a[min]) { min = j; fr.push(F(a, `New minimum: ${a[min]} at index ${min}`, { hi: [min], sorted: [...sorted], ptr: { i, min } })); }
+        }
+        if (min !== i) { [a[i], a[min]] = [a[min], a[i]]; fr.push(F(a, `Swap a[${i}] and a[${min}]`, { swap: [i, min], sorted: [...sorted] })); }
+        sorted.push(i); fr.push(F(a, `Index ${i} is now in its final place`, { sorted: [...sorted] }));
+      }
+      sorted.push(a.length - 1);
+      fr.push(F(a, 'Sorted. Always O(n²) comparisons, at most n − 1 swaps.', { sorted: [...sorted] }));
+      return fr; } },
+
+    bubble: { title: 'Bubble sort', kind: 'array', input: '5, 1, 4, 2, 8, 3', run(a) {
+      const fr = [F(a, 'Start: compare neighbours and swap if they are in the wrong order.', { sorted: [] })];
+      const sorted = [];
+      for (let i = 0; i < a.length - 1; i++) {
+        let swapped = false;
+        for (let j = 0; j < a.length - 1 - i; j++) {
+          fr.push(F(a, `Compare a[${j}] = ${a[j]} and a[${j + 1}] = ${a[j + 1]}`, { cmp: [j, j + 1], sorted: [...sorted] }));
+          if (a[j] > a[j + 1]) { [a[j], a[j + 1]] = [a[j + 1], a[j]]; swapped = true; fr.push(F(a, 'Out of order: swap', { swap: [j, j + 1], sorted: [...sorted] })); }
+        }
+        sorted.unshift(a.length - 1 - i);
+        fr.push(F(a, `Pass ${i + 1} done: the largest remaining value bubbled to index ${a.length - 1 - i}`, { sorted: [...sorted] }));
+        if (!swapped) { fr.push(F(a, 'No swaps in this pass: the array is already sorted, stop early.', { sorted: a.map((_, k) => k) })); return fr; }
+      }
+      fr.push(F(a, 'Sorted. O(n²) worst case, O(n) best case with the early-exit check.', { sorted: a.map((_, k) => k) }));
+      return fr; } },
+
+    reverse: { title: 'Reverse array in place (two pointers)', kind: 'array', input: '1, 2, 3, 4, 5, 6, 7', run(a) {
+      const fr = [F(a, 'Put one pointer at each end and swap towards the middle.', { ptr: { l: 0, r: a.length - 1 } })];
+      for (let l = 0, r = a.length - 1; l < r; l++, r--) {
+        fr.push(F(a, `Swap a[${l}] = ${a[l]} and a[${r}] = ${a[r]}`, { cmp: [l, r], ptr: { l, r } }));
+        [a[l], a[r]] = [a[r], a[l]];
+        fr.push(F(a, 'Swapped; move both pointers inward', { swap: [l, r], ptr: { l, r } }));
+      }
+      fr.push(F(a, 'Pointers met: done. O(n) time, O(1) extra space.', { sorted: a.map((_, k) => k) }));
+      return fr; } },
+
+    minmax: { title: 'Largest and smallest in one pass', kind: 'array', input: '12, 3, 45, 7, 1, 29', run(a) {
+      let min = 0, max = 0;
+      const fr = [F(a, `Start with min = max = a[0] = ${a[0]}`, { hi: [0], ptr: { min, max } })];
+      for (let i = 1; i < a.length; i++) {
+        let m = `Check a[${i}] = ${a[i]}`;
+        if (a[i] < a[min]) { min = i; m += ` → new min ${a[i]}`; }
+        if (a[i] > a[max]) { max = i; m += ` → new max ${a[i]}`; }
+        fr.push(F(a, m, { cmp: [i], ptr: { min, max } }));
+      }
+      fr.push(F(a, `Done: min = ${a[min]}, max = ${a[max]}. One pass, O(n).`, { hi: [min, max], ptr: { min, max } }));
+      return fr; } },
+
+    rotate: { title: 'Rotate array right by k (reversal trick)', kind: 'array', input: '1, 2, 3, 4, 5, 6, 7 | 3', run(a, k) {
+      const n = a.length; k = ((k % n) + n) % n;
+      const fr = [F(a, `Rotate right by k = ${k}: reverse all, then reverse the first k, then the rest.`, {})];
+      const rev = (l, r, label) => { fr.push(F(a, `Reverse ${label}: indices ${l}..${r}`, { range: [l, r] })); for (; l < r; l++, r--) { [a[l], a[r]] = [a[r], a[l]]; fr.push(F(a, `Swap a[${l}] and a[${r}]`, { swap: [l, r], range: [l, r] })); } };
+      rev(0, n - 1, 'the whole array'); rev(0, k - 1, `the first ${k}`); rev(k, n - 1, 'the remaining part');
+      fr.push(F(a, 'Rotated. O(n) time, O(1) extra space.', { sorted: a.map((_, i) => i) }));
+      return fr; } },
+
+    rotatedSearch: { title: 'Binary search in a rotated sorted array', kind: 'array', input: '4, 5, 6, 7, 0, 1, 2, 3 | 1', run(a, target) {
+      const fr = [F(a, `Find ${target}. One half around mid is always sorted.`, {})];
+      let lo = 0, hi = a.length - 1;
+      while (lo <= hi) {
+        const mid = (lo + hi) >> 1;
+        fr.push(F(a, `low = ${lo}, high = ${hi}, mid = ${mid} → a[mid] = ${a[mid]}`, { cmp: [mid], range: [lo, hi], ptr: { lo, mid, hi } }));
+        if (a[mid] === target) { fr.push(F(a, `Found ${target} at index ${mid}. O(log n).`, { hi: [mid], ptr: { mid } })); return fr; }
+        if (a[lo] <= a[mid]) {
+          const inLeft = target >= a[lo] && target < a[mid];
+          fr.push(F(a, `Left half [${lo}..${mid}] is sorted; ${target} is ${inLeft ? '' : 'not '}inside it`, { range: [lo, mid], ptr: { lo, mid, hi } }));
+          if (inLeft) hi = mid - 1; else lo = mid + 1;
+        } else {
+          const inRight = target > a[mid] && target <= a[hi];
+          fr.push(F(a, `Right half [${mid}..${hi}] is sorted; ${target} is ${inRight ? '' : 'not '}inside it`, { range: [mid, hi], ptr: { lo, mid, hi } }));
+          if (inRight) lo = mid + 1; else hi = mid - 1;
+        }
+      }
+      fr.push(F(a, `${target} is not in the array.`, {}));
+      return fr; } },
+
+    palindrome: { title: 'Palindrome check (two pointers)', kind: 'chars', input: 'racecar', run(s) {
+      const a = [...s]; const fr = [F(a, 'Compare characters from both ends, moving inward.', { ptr: { l: 0, r: a.length - 1 } })];
+      for (let l = 0, r = a.length - 1; l < r; l++, r--) {
+        const ok = a[l] === a[r];
+        fr.push(F(a, `'${a[l]}' vs '${a[r]}': ${ok ? 'match' : 'mismatch → not a palindrome'}`, { cmp: [l, r], bad: ok ? [] : [l, r], ptr: { l, r } }));
+        if (!ok) return fr;
+      }
+      fr.push(F(a, `"${s}" is a palindrome. O(n) time, O(1) space.`, { sorted: a.map((_, i) => i) }));
+      return fr; } },
+
+    brackets: { title: 'Balanced brackets with a stack', kind: 'stack', input: '{[()]}', run(s) {
+      const pairs = { ')': '(', ']': '[', '}': '{' }; const st = []; const fr = [F({ s, st, i: -1 }, 'Push every opener; a closer must match the top of the stack.')];
+      for (let i = 0; i < s.length; i++) {
+        const c = s[i];
+        if ('([{'.includes(c)) { st.push(c); fr.push(F({ s, st, i }, `'${c}' is an opener: push`)); }
+        else if (pairs[c]) {
+          if (!st.length || st[st.length - 1] !== pairs[c]) { fr.push(F({ s, st, i }, `'${c}' does not match the top (${st.length ? "'" + st[st.length - 1] + "'" : 'empty stack'}) → NOT balanced`, { bad: true })); return fr; }
+          st.pop(); fr.push(F({ s, st, i }, `'${c}' matches the top: pop`));
+        }
+      }
+      fr.push(F({ s, st, i: s.length }, st.length ? `Openers left on the stack → NOT balanced` : 'Stack is empty → BALANCED. O(n).', { bad: st.length > 0, good: st.length === 0 }));
+      return fr; } },
+
+    spiral: { title: 'Spiral order of a matrix', kind: 'matrix', input: '4x4', run(spec) {
+      const [r, c] = (spec.match(/(\d+)\s*[x×]\s*(\d+)/) || [, 4, 4]).slice(1).map(Number);
+      const R = Math.min(Math.max(r, 1), 8), C = Math.min(Math.max(c, 1), 8);
+      const m = Array.from({ length: R }, (_, i) => Array.from({ length: C }, (_, j) => i * C + j + 1));
+      const order = []; const fr = [F({ m, seen: [] }, 'Walk the outer ring, then shrink the boundaries: top, right, bottom, left.')];
+      let top = 0, bottom = R - 1, left = 0, right = C - 1; const seen = [];
+      const visit = (i, j, dir) => { seen.push([i, j]); order.push(m[i][j]); fr.push(F({ m, seen }, `${dir}: ${m[i][j]}   →   ${order.join(', ')}`, { cur: [i, j] })); };
+      while (top <= bottom && left <= right) {
+        for (let j = left; j <= right; j++) visit(top, j, 'Top row'); top++;
+        for (let i = top; i <= bottom; i++) visit(i, right, 'Right column'); right--;
+        if (top <= bottom) { for (let j = right; j >= left; j--) visit(bottom, j, 'Bottom row'); bottom--; }
+        if (left <= right) { for (let i = bottom; i >= top; i--) visit(i, left, 'Left column'); left++; }
+      }
+      fr.push(F({ m, seen }, `Done: ${order.join(', ')}. Every cell once, O(rows × cols).`));
+      return fr; } },
+
+    rotateMatrix: { title: 'Rotate matrix 90° clockwise (transpose + reverse rows)', kind: 'matrix', input: '3x3', run(spec) {
+      const [n] = (spec.match(/(\d+)/) || [, 3]).slice(1).map(Number); const N = Math.min(Math.max(n, 2), 6);
+      const m = Array.from({ length: N }, (_, i) => Array.from({ length: N }, (_, j) => i * N + j + 1));
+      const fr = [F({ m, seen: [] }, 'Step 1: transpose (swap m[i][j] with m[j][i]). Step 2: reverse every row.')];
+      for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) { [m[i][j], m[j][i]] = [m[j][i], m[i][j]]; fr.push(F({ m, seen: [] }, `Transpose: swap (${i},${j}) and (${j},${i})`, { pair: [[i, j], [j, i]] })); }
+      fr.push(F({ m, seen: [] }, 'Transposed. Now reverse each row.'));
+      for (let i = 0; i < N; i++) { m[i].reverse(); fr.push(F({ m, seen: Array.from({ length: N }, (_, j) => [i, j]) }, `Reverse row ${i}`)); }
+      fr.push(F({ m, seen: [] }, 'Rotated 90° clockwise in place. O(n²) time, O(1) space.'));
+      return fr; } },
+
+    prime: { title: 'Prime check: trial division up to √n', kind: 'numbers', input: '97', run(n) {
+      n = Math.floor(n); const fr = [];
+      if (n < 2) return [F({ n, tried: [] }, `${n} is not prime (primes start at 2).`, { bad: true })];
+      const lim = Math.floor(Math.sqrt(n)); const tried = [];
+      fr.push(F({ n, tried: [] }, `Only divisors up to √${n} ≈ ${lim} need checking.`));
+      for (let d = 2; d <= lim; d++) {
+        tried.push(d);
+        if (n % d === 0) { fr.push(F({ n, tried }, `${n} % ${d} = 0 → ${n} is NOT prime (${n} = ${d} × ${n / d})`, { bad: true })); return fr; }
+        fr.push(F({ n, tried }, `${n} % ${d} = ${n % d}, not a divisor`));
+      }
+      fr.push(F({ n, tried }, `No divisor up to ${lim} → ${n} is PRIME. O(√n).`, { good: true }));
+      return fr; } },
+
+    fibonacci: { title: 'Fibonacci series (iterative)', kind: 'numbers', input: '10', run(n) {
+      n = Math.min(Math.max(Math.floor(n), 1), 30); const seq = [0]; const fr = [F({ seq: [...seq] }, 'Start with 0 and 1; each next term is the sum of the previous two.')];
+      if (n > 1) { seq.push(1); fr.push(F({ seq: [...seq] }, 'Second term: 1')); }
+      while (seq.length < n) { const k = seq.length; seq.push(seq[k - 1] + seq[k - 2]); fr.push(F({ seq: [...seq] }, `${seq[k - 2]} + ${seq[k - 1]} = ${seq[k]}`, { last: true })); }
+      fr.push(F({ seq: [...seq] }, `First ${n} terms. O(n) time; a long overflows after term 92.`, { good: true }));
+      return fr; } },
+  };
+
+  // Question ID -> algorithm
+  const MAP = { G13: 'selection', B41: 'bubble', G12: 'reverse', G11: 'minmax', G15: 'rotate', B40: 'rotatedSearch', G19: 'palindrome', B45: 'brackets', G16: 'spiral', B44: 'rotateMatrix', G4: 'prime', G6: 'fibonacci' };
+
+  function parseInput(algo, raw) {
+    if (algo.kind === 'array') {
+      const [list, extra] = raw.split('|');
+      const a = nums(list).slice(0, 14);
+      return [a.length ? a : nums(algo.input.split('|')[0]), extra !== undefined ? Number(extra.trim()) : undefined];
+    }
+    if (algo.kind === 'numbers') return [Number(raw) || Number(algo.input)];
+    return [raw.trim() || algo.input];
+  }
+
+  function render(stage, algo, f) {
+    stage.innerHTML = '';
+    const s = f.state;
+    if (algo.kind === 'array' || algo.kind === 'chars') {
+      const arr = s; const max = algo.kind === 'array' ? Math.max(...arr.map(Math.abs), 1) : 1;
+      const row = document.createElement('div'); row.className = 'viz-bars' + (algo.kind === 'chars' ? ' chars' : '');
+      arr.forEach((v, i) => {
+        const col = document.createElement('div'); col.className = 'viz-col';
+        const bar = document.createElement('div'); bar.className = 'viz-bar';
+        if (algo.kind === 'array') bar.style.height = (18 + 82 * Math.abs(v) / max) + '%';
+        bar.textContent = v;
+        const cls = [];
+        if (f.sorted && f.sorted.includes(i)) cls.push('ok');
+        if (f.range && (i < f.range[0] || i > f.range[1])) cls.push('dim');
+        if (f.cmp && f.cmp.includes(i)) cls.push('cmp');
+        if (f.swap && f.swap.includes(i)) cls.push('swap');
+        if (f.hi && f.hi.includes(i)) cls.push('hi');
+        if (f.bad && f.bad.includes && f.bad.includes(i)) cls.push('bad');
+        bar.className += ' ' + cls.join(' ');
+        const idx = document.createElement('div'); idx.className = 'viz-idx'; idx.textContent = i;
+        const ptr = document.createElement('div'); ptr.className = 'viz-ptr';
+        ptr.textContent = Object.entries(f.ptr || {}).filter(([, p]) => p === i).map(([k]) => k).join(' ');
+        col.append(bar, idx, ptr); row.append(col);
+      });
+      stage.append(row);
+    } else if (algo.kind === 'matrix') {
+      const grid = document.createElement('div'); grid.className = 'viz-grid'; grid.style.gridTemplateColumns = `repeat(${s.m[0].length}, 1fr)`;
+      const seen = new Set((s.seen || []).map(p => p.join(',')));
+      s.m.forEach((r, i) => r.forEach((v, j) => {
+        const c = document.createElement('div'); c.className = 'viz-cell'; c.textContent = v;
+        if (seen.has(i + ',' + j)) c.classList.add('ok');
+        if (f.cur && f.cur[0] === i && f.cur[1] === j) c.classList.add('cmp');
+        if (f.pair && f.pair.some(p => p[0] === i && p[1] === j)) c.classList.add('swap');
+        grid.append(c);
+      }));
+      stage.append(grid);
+    } else if (algo.kind === 'stack') {
+      const wrap = document.createElement('div'); wrap.className = 'viz-stackwrap';
+      const str = document.createElement('div'); str.className = 'viz-str';
+      [...s.s].forEach((ch, i) => { const sp = document.createElement('span'); sp.textContent = ch; if (i === s.i) sp.className = f.bad ? 'bad' : 'cmp'; else if (i < s.i) sp.className = 'done'; str.append(sp); });
+      const st = document.createElement('div'); st.className = 'viz-stack';
+      if (!s.st.length) { const e = document.createElement('div'); e.className = 'viz-empty'; e.textContent = 'empty'; st.append(e); }
+      s.st.forEach((ch, k) => { const b = document.createElement('div'); b.className = 'viz-sitem' + (k === s.st.length - 1 ? ' top' : ''); b.textContent = ch; st.append(b); });
+      const lab = document.createElement('div'); lab.className = 'viz-stacklabel'; lab.textContent = 'stack (top ↑)';
+      const col = document.createElement('div'); col.className = 'viz-stackcol'; col.append(st, lab);
+      wrap.append(str, col); stage.append(wrap);
+    } else if (algo.kind === 'numbers') {
+      const box = document.createElement('div'); box.className = 'viz-nums';
+      if (s.seq) s.seq.forEach((v, i) => { const b = document.createElement('span'); b.className = 'viz-chip' + (f.last && i === s.seq.length - 1 ? ' cmp' : '') + (f.good ? ' ok' : ''); b.textContent = v; box.append(b); });
+      else {
+        const big = document.createElement('div'); big.className = 'viz-big' + (f.bad ? ' bad' : f.good ? ' ok' : ''); big.textContent = s.n; box.append(big);
+        s.tried.forEach((d, i) => { const b = document.createElement('span'); b.className = 'viz-chip' + (i === s.tried.length - 1 ? (f.bad ? ' bad' : ' cmp') : ''); b.textContent = '÷' + d; box.append(b); });
+      }
+      stage.append(box);
+    }
+  }
+
+  function mount(card, key) {
+    const algo = ALGOS[key]; const tools = card.querySelector('.q-tools'); if (!tools) return;
+    const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'btn viz-open'; btn.textContent = '▶ Visualize';
+    tools.insertBefore(btn, tools.lastElementChild);
+    const panel = document.createElement('div'); panel.className = 'viz'; panel.hidden = true;
+    const hint = algo.kind === 'array' && algo.input.includes('|') ? ' (values | k)' : '';
+    const inId = 'viz-in-' + card.dataset.id;
+    panel.innerHTML = `<div class="viz-head"><b>${algo.title}</b><label class="viz-inlabel" for="${inId}">Input${hint}</label><input id="${inId}" class="viz-in" value="${algo.input}"><button type="button" class="btn viz-apply">Apply</button></div>
+      <div class="viz-stage" aria-live="polite"></div><div class="viz-msg"></div>
+      <div class="viz-ctrl"><button type="button" class="btn viz-reset" aria-label="Restart">⏮</button><button type="button" class="btn viz-back" aria-label="Previous step">◀</button><button type="button" class="btn viz-play">▶ Play</button><button type="button" class="btn viz-next" aria-label="Next step">▶|</button>
+      <label class="viz-speedl">Speed <input type="range" class="viz-speed" min="1" max="5" value="3" aria-label="Animation speed"></label><span class="viz-count"></span></div>`;
+    tools.after(panel);
+    const stage = panel.querySelector('.viz-stage'), msg = panel.querySelector('.viz-msg'), count = panel.querySelector('.viz-count'), play = panel.querySelector('.viz-play'), input = panel.querySelector('.viz-in');
+    let frames = [], k = 0, timer = null;
+    const show = () => { render(stage, algo, frames[k]); msg.textContent = frames[k].msg; count.textContent = `Step ${k + 1} / ${frames.length}`; };
+    const stop = () => { clearInterval(timer); timer = null; play.textContent = '▶ Play'; };
+    const build = () => { stop(); frames = algo.run(...parseInput(algo, input.value)); k = 0; show(); };
+    const speed = () => [1400, 1000, 700, 420, 220][panel.querySelector('.viz-speed').value - 1];
+    const start = () => { if (k >= frames.length - 1) k = 0; play.textContent = '⏸ Pause'; timer = setInterval(() => { if (k < frames.length - 1) { k++; show(); } else stop(); }, speed()); };
+    btn.onclick = () => { panel.hidden = !panel.hidden; btn.textContent = panel.hidden ? '▶ Visualize' : '✕ Close visual'; if (!panel.hidden && !frames.length) build(); if (panel.hidden) stop(); };
+    play.onclick = () => (timer ? stop() : start());
+    panel.querySelector('.viz-next').onclick = () => { stop(); if (k < frames.length - 1) { k++; show(); } };
+    panel.querySelector('.viz-back').onclick = () => { stop(); if (k > 0) { k--; show(); } };
+    panel.querySelector('.viz-reset').onclick = () => { stop(); k = 0; show(); };
+    panel.querySelector('.viz-apply').onclick = build;
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') build(); });
+    panel.querySelector('.viz-speed').oninput = () => { if (timer) { stop(); start(); } };
+  }
+
+  Object.entries(MAP).forEach(([id, key]) => { const card = document.getElementById('q-' + id); if (card) mount(card, key); });
 })();
 </script>
 <script>
